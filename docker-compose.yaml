@@ -22,6 +22,8 @@ services:
       KAFKA_CLUSTERS_1_METRICS_PORT: 9998
       KAFKA_CLUSTERS_1_SCHEMAREGISTRY: http://schemaregistry1:8085
       DYNAMIC_CONFIG_ENABLED: 'true'
+    networks:
+      - monorepo_network
 
   kafka0:
     image: confluentinc/cp-kafka:7.2.1
@@ -50,6 +52,8 @@ services:
     volumes:
       - ./scripts/update_run.sh:/tmp/update_run.sh
     command: "bash -c 'if [ ! -f /tmp/update_run.sh ]; then echo \"ERROR: Did you forget the update_run.sh file that came with this docker-compose.yml file?\" && exit 1 ; else /tmp/update_run.sh && /etc/confluent/docker/run ; fi'"
+    networks:
+      - monorepo_network
 
   kafka1:
     image: confluentinc/cp-kafka:7.2.1
@@ -78,6 +82,8 @@ services:
     volumes:
       - ./scripts/update_run.sh:/tmp/update_run.sh
     command: "bash -c 'if [ ! -f /tmp/update_run.sh ]; then echo \"ERROR: Did you forget the update_run.sh file that came with this docker-compose.yml file?\" && exit 1 ; else /tmp/update_run.sh && /etc/confluent/docker/run ; fi'"
+    networks:
+      - monorepo_network
 
   schemaregistry0:
     image: confluentinc/cp-schema-registry:7.2.1
@@ -94,6 +100,8 @@ services:
       SCHEMA_REGISTRY_SCHEMA_REGISTRY_INTER_INSTANCE_PROTOCOL: "http"
       SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: INFO
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
+    networks:
+      - monorepo_network
 
   schemaregistry1:
     image: confluentinc/cp-schema-registry:7.2.1
@@ -110,6 +118,9 @@ services:
       SCHEMA_REGISTRY_SCHEMA_REGISTRY_INTER_INSTANCE_PROTOCOL: "http"
       SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: INFO
       SCHEMA_REGISTRY_KAFKASTORE_TOPIC: _schemas
+    networks:
+      - monorepo_network
+
   mongo:
     image: mongo:5.0.9
     container_name: mongo
@@ -118,6 +129,9 @@ services:
       - "27017:27017"
     volumes:
       - 'shared_database:/data/db'
+    networks:
+      - monorepo_network
+
   mongo-express:
     image: mongo-express:0.54.0
     container_name: mongo-express
@@ -126,6 +140,12 @@ services:
       - mongo
     ports:
       - "8087:8081"
+    networks:
+      - monorepo_network
+
+networks:
+  monorepo_network:
+    name:   monorepo_network
 volumes:
   shared_database: null
   cache:

@@ -1,4 +1,4 @@
-package com.services.monorepo.application;
+package com.services.monorepo.domain;
 
 
 public interface ApplicationReference {

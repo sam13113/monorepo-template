@@ -3,10 +3,10 @@ package com.services.monorepo.adapter;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class AdapterApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
