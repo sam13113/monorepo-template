@@ -8,14 +8,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of {@link CreateCustomerUseCase}.
+ * */
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class CustomerService implements CreateCustomerUseCase {
 
-  private final CustomerPersistencePort customerPersistencePort;
-  private final CustomerEventPort customerEventPort;
+    private final CustomerPersistencePort customerPersistencePort;
+    private final CustomerEventPort customerEventPort;
 
+    /**
+     * {@inheritDoc}
+     * */
     @Override
     public Customer createCustomer(Customer customer) {
         Customer savedCustomer = customerPersistencePort.storeNewCustomer(customer);

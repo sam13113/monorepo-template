@@ -27,7 +27,7 @@ public class KafkaProducerConfiguration {
 
     public Map<String, Object> getProducerConfig(){
         Map<String, Object> config = new HashMap<>();
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:8670");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, CloudEventSerializer.class);
         config.put(CloudEventSerializer.ENCODING_CONFIG, Encoding.STRUCTURED);

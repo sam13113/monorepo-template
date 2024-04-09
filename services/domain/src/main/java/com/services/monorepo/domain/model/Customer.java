@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Data-model for Customer.
+ * */
 @Data
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class Customer {
